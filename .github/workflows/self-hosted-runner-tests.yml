@@ -1,0 +1,34 @@
+name: Self-Hosted Runner Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  self-hosted-job:
+    name: Run on Self-Hosted Runner
+    runs-on: self-hosted
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Run a sample script
+      - name: Run a sample shell command
+        run: |
+          echo "This is running on a self-hosted runner!"
+          uname -a
+          echo "Repository Name: ${{ github.repository }}"
+          echo "Current Branch: ${{ github.ref }}"
+          
+      # Step 3: Run tests (you can expand this)
+      - name: Run tests
+        run: |
+          echo "Running some tests here"
